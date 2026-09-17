@@ -139,7 +139,7 @@ body {background:#eff4f6}
 .photo-expand {box-shadow:0 5px 15px #01223338}
 
 .about {background:linear-gradient(120deg,#f5f8f5,#e4eff5);position:relative;overflow:clip}
-.about-layout {gap:9%}
+@media (min-width: 681px) { .about-layout {gap:9%} }
 .about .section-top {padding-bottom:35px}
 .about-intro {margin-top:26px;color:#22465b}
 .about-secondary {color:#4c6575}

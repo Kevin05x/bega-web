@@ -40,8 +40,16 @@
 
 /* --- Sección de contacto: WhatsApp/correo con la misma insignia. En
    escritorio siguen uno junto al otro; en móvil se apilan para que
-   ninguno se recorte ni se superponga. --- */
+   ninguno se recorte ni se superponga.
+   Corrección real de contraste: esta lista vive sobre la fotografía
+   nocturna del fondo de #contacto, pero su texto (y el número de
+   WhatsApp en negrita) seguía en los colores oscuros pensados para un
+   fondo claro — casi invisibles ahí. Se pasan a un tono claro,
+   consistente con el resto del texto de esta sección oscura. --- */
 .direct-contact .social-link { border-bottom: 0; padding-bottom: 0; }
+.direct-contact a, .direct-contact a:visited { color: #d8e8f0; }
+.direct-contact a:hover, .direct-contact a:focus-visible { color: var(--yellow); border-color: var(--yellow); }
+.direct-contact b { color: #fff; font-weight: 600; }
 @media (max-width: 680px) {
   .direct-contact { flex-direction: column; gap: 12px; font-size: 13px; }
   .direct-contact li { width: 100%; }
@@ -93,6 +101,32 @@
     font-size: clamp(15px, 4.4vw, 21px);
   }
   .values-line span:nth-child(even) { font-size: 16px; }
+
+  /* Causa real del desborde: cada tarjeta de "La forma BEGA" entra con
+     una animación (se desliza hacia arriba y aparece) atada a la
+     posición del scroll — diseñada para pantallas altas, donde ese
+     recorrido tiene espacio de sobra. En un teléfono, con la tarjeta
+     apenas más baja que la pantalla, la última tarjeta puede quedar a
+     mitad de esa animación (desplazada hacia abajo, semitransparente)
+     justo cuando "Seguridad · Eficiencia · Compromiso" ya empezó,
+     encimándose. En vez de ajustar el punto exacto donde eso deja de
+     pasar, se muestra esta tarjeta siempre en su posición final en
+     móvil — un cambio menor de estilo (aparece sin el pequeño
+     deslizamiento) a cambio de que nunca se superponga con lo de abajo. */
+  .visual-motion .principles article { transform: none; opacity: 1; }
+
+  /* Causa real y de fondo del desborde: glass-industrial.css trae una
+     regla sin acotar a pantalla ("gap:9%") que —por venir en un archivo
+     que se carga después— ganaba por encima de la regla de este mismo
+     diseño para móvil (gap:40px), sin importar el ancho de pantalla.
+     En un contenedor tan alto como este, ese 9% se traducía en un
+     espacio real de ~73px en vez de 40px, y esa diferencia era
+     exactamente la que hacía que la tarjeta de "La forma BEGA" invadiera
+     el espacio de "Seguridad · Eficiencia · Compromiso". Ya se acotó esa
+     regla a escritorio en glass-industrial.css; esta línea de aquí
+     refuerza el valor correcto en móvil por si otra hoja de estilos
+     vuelve a pisarlo en el futuro. */
+  .about-layout { gap: 40px; }
 }
 
 /* ============================================================

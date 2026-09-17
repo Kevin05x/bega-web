@@ -5,6 +5,7 @@
 > nueva revisión del sitio, esta carpeta se reemplaza por la versión actualizada — no se
 > edita a mano.
 
+
 # BEGA — Glass industrial · revisión 15 (legibilidad móvil)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
@@ -108,6 +109,11 @@ El sitio ya está publicado en GitHub Pages (ver "Preparación de producción" a
 - **Verificado:** Playwright en 390×844 — sin errores de consola, sin 404 tras recorrer los 4 filtros de la galería y todas sus páginas de paginación (con las 50 fotos reales, traídas de la computadora de Kevin para esta prueba), el menú abre y cierra por botón, por enlace y por toque fuera del panel sin quedar inalcanzable, el arrastre táctil simulado sobre el equipo articulado repinta el lienzo, y en 1440×900 (escritorio) el menú, el pie de página y la sección de contacto se comportan exactamente igual que antes de esta revisión.
 
 **Corrección sobre la marcha, pedida por Kevin antes de publicar:** las insignias de color con iniciales (WA, FB, IG, TT, @) se reemplazaron por los logotipos reales de cada red — Kevin descargó los cinco de zonalogo.com (WhatsApp, Facebook, Instagram, TikTok y Gmail para el correo) y los guardó en la carpeta del proyecto; quedaron en `assets/brand/social/` como SVG, con su propio color y forma, sin recortar ni recolorear. Es el uso habitual de estos íconos para enlazar a las cuentas propias del negocio, no una recreación con otro fin. Además, el panel del menú móvil tenía un fondo plano de un solo color que Kevin señaló como "vacío"; ahora usa de fondo la misma fotografía industrial nocturna que ya aparece en la sección de contacto (`assets/photos/nave-nocturna.jpeg`), oscurecida con un degradado para que los bloques del menú se sigan leyendo bien encima.
+
+**Segunda corrección, tras revisar el sitio ya publicado desde el teléfono:** Kevin encontró dos problemas más una vez el sitio quedó en línea.
+
+- **WhatsApp/correo poco visibles en la sección de contacto:** ese bloque vive sobre la fotografía nocturna, pero sus enlaces y el número de WhatsApp en negrita seguían en los tonos oscuros pensados para un fondo claro — casi ilegibles ahí. Se pasaron a un celeste claro (enlaces) y blanco (el número y el correo en negrita), consistente con el resto del texto de esa sección oscura.
+- **"Seguridad · Eficiencia · Compromiso" invadía la tarjeta de arriba:** esto no era el mismo problema ya corregido antes (el ajuste anterior evitaba que el renglón se recortara hacia los costados; este es distinto — la tarjeta blanca de "La forma BEGA" terminaba invadiendo el espacio de ese renglón). La causa real: `glass-industrial.css` traía una regla de espaciado (`gap`) para esa cuadrícula sin restricción de ancho de pantalla que, por cargarse después, ganaba por encima de la regla que el propio diseño ya tenía pensada para móvil — sin importar que esa segunda regla fuera justamente la pensada para pantallas angostas (el mismo patrón de error ya encontrado y corregido una vez antes en esta revisión, con el fondo de "A cada desafío"). En una tarjeta tan alta como esa, la diferencia entre ambos valores se traducía en un espacio real casi el doble de grande, lo suficiente para que la tarjeta empujara hacia abajo más de lo previsto e invadiera el renglón de valores. Se acotó esa regla a escritorio y se reforzó el valor correcto en móvil desde `mobile-fixes-v15.css` (que se carga al final de todas). Verificado con medición exacta del espacio entre ambos bloques: antes se superponían 41px, ahora quedan 32px de separación limpia, sin superposición, en escritorio no cambió nada (se comprobó que ahí sigue el espaciado original).
 
 ## Novedades de la revisión 14
 
