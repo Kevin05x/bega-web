@@ -1,0 +1,32 @@
+/* Green actions, uncropped equipment photos, stationary contact rig. */
+:root {--green:#167348;--green-hover:#105c39;--yellow:var(--green)}
+::selection {background:var(--green);color:#fff}
+.skip-link {color:#fff}
+.intro-band strong,.tiny-cross,.gallery-footer .text-link,.back-top span {color:#98d8b7}
+.hero .hero-actions .button-ink,.button-yellow,.gallery-filters button[aria-pressed=true],.wall-active .photo-expand,.photo-expand {background:var(--green);color:#fff;border-color:var(--green)}
+.hero .hero-actions .button-ink:hover,.button-yellow:hover,.gallery-mode:hover,.gallery-pagination button:not(:disabled):hover {background:var(--green-hover);color:#fff}
+.gallery-mode {color:#98f2bf;border-color:#69c49788}
+.hero .scene-progress i,.wall-active .wall-bottom:after,.hero-values i,.contact .eyebrow:before {background:var(--green)}
+.hero .scene-trace path,.contact-focus-trace path {stroke:var(--green)}
+.contact-focus-trace circle {fill:#168452}
+.contact .guided-field {outline-color:#168452;box-shadow:0 0 0 5px #16845216}
+.equipment-photo {height:clamp(320px,29vw,430px);background:#d7e6ed}
+.equipment-photo img {object-fit:contain;object-position:center;height:100%;width:100%}
+.equipment-photo:after {background:linear-gradient(0deg,#072d40b3,transparent 25%)}
+.equipment-photo figcaption {bottom:14px}
+.hero-machine {height:600px;max-height:69vh}
+@media(min-width:1100px) and (min-height:701px){
+  .contact .contact-layout {grid-template-columns:48% 46%;column-gap:6%;row-gap:18px;align-items:stretch;min-height:0;position:relative}
+  .contact .contact-copy {display:contents}
+  .contact .contact-copy h2 {grid-column:1/-1;grid-row:1;font-size:clamp(48px,4.7vw,72px);max-width:100%;line-height:1.05}
+  .contact .contact-copy h2 br {display:none}
+  .contact .contact-copy>p {grid-column:1/-1;grid-row:2;margin:0 0 15px;font-size:13px}
+  .contact .contact-copy>p br {display:none}
+  .contact .contact-machine {position:relative;left:auto;top:auto;width:100%;height:100%;min-height:640px;grid-column:1;grid-row:3;margin:0;overflow:hidden;align-self:stretch;pointer-events:none}
+  .contact .contact-machine:before {content:'';position:absolute;inset:5% 1% 2%;border:1px solid #b5dced38;border-radius:24px;background:linear-gradient(130deg,#81bdda12,#b9ddf308)}
+  .contact .contact-machine:after {content:'';position:absolute;left:6%;right:6%;bottom:6%;height:1px;background:linear-gradient(90deg,transparent,#bae7ff55,transparent)}
+  .contact-form-wrap {grid-column:2;grid-row:3}
+  .contact-guide-hint {position:static;grid-column:1;grid-row:4;max-width:none;text-align:center;margin:0;color:#bfdfeb}
+}
+@media(max-width:680px){.equipment-photo {height:340px}.hero-machine {height:auto;max-height:none}}
+@media print{.equipment-photo{display:none}}

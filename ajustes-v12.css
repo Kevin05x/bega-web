@@ -1,0 +1,58 @@
+/* Revisión 12 — correcciones puntuales pedidas por Kevin sobre las
+   revisiones 09/10: (1) el fondo fotográfico de servicios competía con la
+   animación de la grúa y la volvía difícil de distinguir; (2) el texto
+   técnico pequeño (eyebrow "0X / ..." y enlaces tipo "Encuentra tu
+   equipo") era poco legible en escritorio. Capa aditiva: no reemplaza
+   nada de las revisiones anteriores, solo ajusta estos puntos. */
+
+/* --- Fondo de servicios más opaco: la grúa ilustrada debe notarse
+   claramente por encima de la fotografía, no competir con ella.
+   Kevin pidió un poco más de neblina todavía sobre el lado izquierdo. --- */
+.services-stage {
+  background-image:
+    linear-gradient(100deg, rgba(9,36,52,.66) 0%, rgba(9,36,52,.3) 42%, rgba(236,245,248,.9) 78%),
+    url('assets/photos/estructura-metalica.jpeg');
+}
+
+/* Al oscurecer ese lado, el eyebrow "0X / ..." (texto oscuro, pensado
+   para el fondo claro que tenía antes) dejó de leerse bien — quedaba
+   oscuro sobre oscuro. Se le da una franja propia, siempre lo bastante
+   oscura sin importar qué haya detrás en la fotografía, y texto claro a
+   juego con el mismo tratamiento que ya usa el eyebrow del hero. Solo
+   afecta a esta sección: el resto de "eyebrow"/"micro" del sitio siguen
+   oscuros sobre sus fondos claros. */
+.services-stage .section-top {
+  position: relative;
+  z-index: 3;
+  background: linear-gradient(100deg, rgba(6,26,38,.72) 0%, rgba(6,26,38,.5) 65%, rgba(6,26,38,.28) 100%);
+  padding: 11px 16px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+}
+.services-stage .eyebrow,
+.services-stage .section-top .micro {
+  color: rgb(196,219,230);
+}
+.services-stage .eyebrow:before {
+  background: var(--blue);
+}
+
+/* --- Texto técnico más grande en escritorio (901 px o más). Los
+   ajustes compactos ya afinados para tablet/móvil en las revisiones 08 y
+   09 no se tocan. --- */
+@media (min-width: 901px) {
+  .eyebrow, .micro, .small-intro {
+    font-size: 12.5px;
+    letter-spacing: 1.1px;
+  }
+  .micro {
+    font-size: 11.5px;
+  }
+  .services-bottom {
+    font-size: 11.5px;
+    letter-spacing: .5px;
+  }
+  .service-machine figcaption {
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,47 @@
+/* Revisión 14 — datos de contacto reales y envío de la consulta.
+   Kevin entregó su correo, celular y redes sociales, y pidió avanzar hacia
+   producción. Esta capa agrega esos datos al pie de página y a la sección
+   de contacto, y habilita el envío real de la consulta preparada por
+   WhatsApp o correo (antes solo se podía copiar el texto). No se toca la
+   maquetación existente: solo se agregan elementos nuevos y se ordena su
+   estilo, igual que las capas anteriores. */
+
+/* --- Pie de página: correo, WhatsApp y redes --- */
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  padding: 22px 0;
+  border-top: 1px solid #385765;
+  font-family: Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: .3px;
+}
+.footer-contact a, .footer-contact a:visited { color: #a5bac4; }
+.footer-contact a:hover, .footer-contact a:focus-visible { color: var(--yellow); }
+
+@media (max-width: 680px) {
+  .footer-contact { font-size: 9px; gap: 8px 20px; padding: 18px 0; }
+}
+
+/* --- Sección de contacto: WhatsApp / correo directos, sin pasar por el formulario --- */
+.direct-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.direct-contact a, .direct-contact a:visited { border-bottom: 1px solid var(--line); padding-bottom: 2px; color: var(--muted); }
+.direct-contact a:hover, .direct-contact a:focus-visible { border-color: var(--blue); color: var(--ink); }
+.direct-contact b { font-weight: 400; color: var(--ink); }
+
+/* --- Resumen de la consulta: ahora con envío real por WhatsApp/correo --- */
+.result-actions { flex-wrap: wrap; row-gap: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-contact a, .direct-contact a { transition: none; }
+}

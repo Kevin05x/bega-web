@@ -1,0 +1,160 @@
+{
+  "source": "Derived exclusively from manlift-vista-explosionada.png through the generated side-elevation atlas.",
+  "projection": "side-elevation",
+  "units": "sprite pixels",
+  "pivotBasis": "Visible attachment centers, manually located; illustrative 2D rig, not manufacturer CAD.",
+  "parts": [
+    {
+      "id": "base",
+      "src": "assets/base.png",
+      "size": [
+        667,
+        321
+      ],
+      "sourceCrop": [
+        525,
+        0,
+        1184,
+        313
+      ],
+      "pivot": [
+        233,
+        27
+      ],
+      "tip": null
+    },
+    {
+      "id": "lower",
+      "src": "assets/lower.png",
+      "size": [
+        996,
+        161
+      ],
+      "sourceCrop": [
+        280,
+        306,
+        1268,
+        459
+      ],
+      "pivot": [
+        961,
+        71
+      ],
+      "tip": [
+        47,
+        92
+      ]
+    },
+    {
+      "id": "outer",
+      "src": "assets/outer.png",
+      "size": [
+        630,
+        110
+      ],
+      "sourceCrop": [
+        600,
+        472,
+        1222,
+        574
+      ],
+      "pivot": [
+        594,
+        29
+      ],
+      "tip": [
+        29,
+        41
+      ]
+    },
+    {
+      "id": "extension",
+      "src": "assets/extension.png",
+      "size": [
+        727,
+        53
+      ],
+      "sourceCrop": [
+        405,
+        576,
+        1124,
+        621
+      ],
+      "pivot": [
+        706,
+        24
+      ],
+      "tip": [
+        29,
+        24
+      ]
+    },
+    {
+      "id": "jib",
+      "src": "assets/jib.png",
+      "size": [
+        385,
+        122
+      ],
+      "sourceCrop": [
+        588,
+        630,
+        965,
+        744
+      ],
+      "pivot": [
+        353,
+        54
+      ],
+      "tip": [
+        30,
+        53
+      ]
+    },
+    {
+      "id": "basket",
+      "src": "assets/basket.png",
+      "size": [
+        338,
+        200
+      ],
+      "sourceCrop": [
+        607,
+        746,
+        937,
+        938
+      ],
+      "pivot": [
+        312,
+        136
+      ],
+      "tip": null
+    },
+    {
+      "id": "cylinder",
+      "src": "assets/cylinder.png",
+      "size": [
+        428,
+        63
+      ],
+      "sourceCrop": [
+        555,
+        950,
+        975,
+        1005
+      ],
+      "pivot": [
+        25,
+        29
+      ],
+      "tip": [
+        404,
+        29
+      ]
+    }
+  ],
+  "unusedParts": [
+    "cylinder"
+  ],
+  "note": "Wheels and gray housing belong to the base assembly. The auxiliary cylinder is not duplicated in the rig."
+}

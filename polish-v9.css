@@ -1,0 +1,112 @@
+/* Revisión 09 — pulido de interacción y coherencia móvil/escritorio.
+   Capa aditiva: no se tocan las coreografías de scroll ni el rig.
+   Todo movimiento nuevo respeta prefers-reduced-motion. */
+
+html { scroll-behavior: smooth; }
+
+/* --- Transiciones en todo lo interactivo: nada debe cambiar de golpe --- */
+.button, .text-link, .header-cta, .back-top, .gallery-filters button,
+.gallery-mode, .gallery-pagination button, .photo-expand,
+.service-list article > a, .equipment-tags span, summary, .menu-button,
+.motion-toggle, .footer-top .wordmark, input, select, textarea,
+.site-header nav a {
+  transition: background-color .25s cubic-bezier(.4,0,.2,1),
+              color .25s cubic-bezier(.4,0,.2,1),
+              border-color .25s cubic-bezier(.4,0,.2,1),
+              box-shadow .25s cubic-bezier(.4,0,.2,1),
+              transform .2s cubic-bezier(.4,0,.2,1);
+}
+.site-header nav a:after { transition: right .35s cubic-bezier(.65,0,.35,1); }
+summary span { transition: transform .25s cubic-bezier(.4,0,.2,1); }
+.field-stack, .project-photo, .project-photo img { will-change: transform; }
+
+.button:hover, .header-cta:hover, .gallery-mode:hover { transform: translateY(-2px); }
+.button:active, .header-cta:active { transform: translateY(0); }
+.service-list article > a:hover { transform: scale(1.06); }
+.photo-expand:hover { transform: scale(1.08); }
+input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 3px rgba(8,125,187,.15); }
+
+/* Cross-fade suave cuando el canvas reemplaza el fotograma estático */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes bega-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .motion-ready .machine-canvas { animation: bega-fade-in .5s ease both; }
+
+  /* Pequeños toques de vida, discretos y lentos: nunca distraen del contenido */
+  @keyframes bega-cue-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+  .scroll-cue > span { display: inline-block; animation: bega-cue-bounce 2.4s ease-in-out infinite; }
+
+  @keyframes bega-dot-pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+  .eyebrow:before { animation: bega-dot-pulse 2.8s ease-in-out infinite; }
+
+  @keyframes bega-crosshair-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(.85); } }
+  .crosshair { display: inline-block; animation: bega-crosshair-pulse 3.2s ease-in-out infinite; }
+}
+
+/* Inclinación suave al pasar el cursor (solo mouse/trackpad, nunca táctil) */
+@media (hover: hover) and (pointer: fine) {
+  .equipment-item, .principles article {
+    transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+}
+
+/* --- Coherencia de identidad visual entre escritorio y móvil ---
+   Los mismos elementos "plano técnico" (índice de capítulo, etiquetas de
+   máquina, franja de valores) existen en toda resolución; solo cambia su
+   tamaño y acomodo, nunca su presencia. */
+
+@media (max-width: 1100px) {
+  .hero-bottom { flex-wrap: wrap; row-gap: 8px; }
+  .hero-values {
+    display: flex !important; order: 5; width: 100%;
+    justify-content: center; font-size: 8px; letter-spacing: .8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-index {
+    display: inline-block !important; font-size: 7.5px; letter-spacing: 1px;
+  }
+  .hero .machine-label {
+    display: flex !important; position: static; margin-top: 10px;
+    justify-content: center; text-align: center; font-size: 7.5px;
+  }
+  .hero .hero-machine { display: flex; flex-direction: column; }
+}
+
+@media (max-width: 680px) {
+  .section-top { flex-wrap: wrap; row-gap: 6px; }
+  .section-top > .micro {
+    display: block !important; width: 100%; font-size: 8.5px;
+  }
+  .hero-values { font-size: 7px; }
+}
+
+/* El fondo fotográfico de servicios estaba casi lavado: se recupera contraste
+   fotográfico manteniendo la lectura del texto sobre la tarjeta de vidrio. */
+.services-stage {
+  background-image:
+    linear-gradient(100deg, rgba(9,36,52,.22) 0%, rgba(9,36,52,.05) 42%, rgba(236,245,248,.85) 78%),
+    url('assets/photos/estructura-metalica.jpeg');
+}
+@media (max-width: 680px) {
+  .services-stage {
+    background-image:
+      linear-gradient(180deg, rgba(9,36,52,.30) 0%, rgba(9,36,52,.08) 30%, rgba(236,245,248,.94) 62%),
+      url('assets/photos/estructura-metalica.jpeg');
+  }
+  /* La tarjeta de servicios usa el mismo lenguaje "vidrio" que el escritorio,
+     en vez de un panel plano casi blanco. */
+  .services .service-list {
+    background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(246,251,255,.72));
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: var(--glass-shadow, 0 16px 40px rgba(8,40,61,.12));
+    padding: 14px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-cue > span, .eyebrow:before, .crosshair, .motion-ready .machine-canvas { animation: none !important; }
+  .equipment-item, .principles article { transform: none !important; }
+}

@@ -1,0 +1,71 @@
+/* Touch layouts use the same scroll rig and real assets. No scroll hijacking. */
+@media(max-width:900px) and (min-height:501px){
+  .motion-ready:not(.simple-motion) .hero {height:250svh}
+  .motion-ready:not(.simple-motion) .services {height:260svh}
+}
+@media(max-width:680px){
+  :root {--pad:6vw;scroll-padding-top:20px}
+  .site-header {min-height:72px;padding-top:12px;padding-bottom:12px}
+  .menu-button,.motion-toggle,.gallery-filters button,.gallery-mode,.gallery-pagination button,.photo-expand {min-height:44px}
+  .photo-expand {min-width:44px}
+  .gallery-pagination button {min-width:44px}
+  .hero .hero-copy {padding:16px 0 0}
+  .hero-intro {margin-bottom:15px;font-size:7px}
+  .hero h1 {font-size:clamp(47px,13vw,72px)}
+  .hero .hero-layout {justify-content:center;gap:12px}
+  .hero-description {margin-top:13px;line-height:1.6}
+  .hero-actions {margin-top:15px;gap:10px}
+  .hero .hero-actions .button,.hero .hero-actions .text-link {min-height:46px;padding:13px 12px}
+  .hero .hero-machine {width:100%;height:clamp(220px,33svh,330px);aspect-ratio:auto;margin:0;align-self:center}
+  .hero .hero-machine .machine-canvas {height:100%}
+  .hero .hero-machine .machine-backdrop {inset:0}
+  .hero-bottom {min-height:53px;padding:7px 0;flex-wrap:nowrap}
+  .hero-bottom .scroll-cue {max-width:59%;line-height:1.5}
+  .hero .motion-toggle {font-size:8px;max-width:36%}
+  .motion-ready:not(.simple-motion) .hero-stage {height:max(690px,100svh);min-height:0;top:min(0px,calc(100svh - 690px));padding-top:18px}
+  .motion-ready:not(.simple-motion) .services-stage {height:max(810px,100svh);min-height:0;top:min(0px,calc(100svh - 810px));padding:22px var(--pad) 14px}
+  .services .section-top {padding-bottom:12px}
+  .services .services-layout {display:grid;grid-template-columns:1fr;gap:8px;align-content:center;flex:1}
+  .services .services-copy {display:contents}
+  .services .services-copy h2 {grid-row:1;font-size:clamp(34px,9.5vw,45px)}
+  .services .services-copy .title-rule {grid-row:2;margin-top:0}
+  .services .service-machine {grid-row:3;height:185px;max-width:100%;margin:0}
+  .services .service-machine figcaption {display:none}
+  .services .service-list {grid-row:4;margin:0;padding:0 13px;background:#eff6f7f2;border-radius:15px}
+  .services .service-list article {padding:11px 0;gap:8px;grid-template-columns:14px 1fr 44px}
+  .services .service-list h3 {font-size:18px}
+  .services .service-list p {font-size:11px;line-height:1.5;margin-top:5px}
+  .services .service-list article>a {width:44px;height:44px}
+  .services .services-bottom {margin-top:12px;font-size:7px;line-height:1.6}
+  .motion-ready:not(.simple-motion) .scene-trace {display:block;pointer-events:none}
+  .wall-active {height:300svh}
+  .wall-active .projects-stage {top:0;height:100svh;padding:20px 0 10px}
+  .wall-active .section-top {padding-bottom:10px}
+  .wall-active .section-heading {margin-bottom:12px}
+  .wall-active .section-heading h2 {font-size:35px}
+  .wall-active .section-heading>p {display:none}
+  .wall-active .gallery-tools {gap:8px;margin-bottom:6px}
+  .wall-active .gallery-filters {flex-wrap:nowrap;overflow-x:auto;max-width:100%;border-radius:24px;scrollbar-width:thin}
+  .wall-active .gallery-filters button {flex-shrink:0;padding:8px 12px;font-size:10px}
+  .wall-active .wall-viewport {perspective:1100px;min-height:160px;margin:0 -8px}
+  .wall-active .drift-wall {gap:12px;padding:30px 14px 0}
+  .wall-active .drift-column {gap:14px}
+  .wall-active .drift-column:nth-child(3) {display:none}
+  .wall-active .project-photo:nth-child(n) img {height:190px;filter:none}
+  .wall-active.three-photos .project-photo:nth-child(n) img {height:210px}
+  .wall-active .project-photo figcaption {font-size:10px;line-height:1.4;padding:10px 8px}
+  .wall-active .project-photo figcaption small {font-size:7px}
+  .wall-active .wall-bottom {flex-direction:row;flex-wrap:wrap;gap:6px;align-items:center;padding-top:8px}
+  .wall-active .wall-hint {font-size:7px;max-width:45%}
+  .wall-active .wall-bottom .text-link {display:none}
+  .wall-active .gallery-mode {padding:8px 12px;font-size:10px}
+  .contact .contact-machine {display:block;position:relative;top:auto;right:auto;left:auto;width:100%;height:230px;min-height:0;margin:0 0 8px;overflow:hidden;border:1px solid #9fbccc;border-radius:16px;background:linear-gradient(130deg,#dcebf2,#b9d4e0)}
+  .contact .contact-guide-hint {display:block;position:static;color:#225542;margin:0 0 24px;font:9px/1.6 Consolas,monospace;letter-spacing:.2px}
+  .contact input,.contact select,.contact textarea {font-size:16px}
+  .contact .form-row {grid-template-columns:1fr;gap:0}
+  .contact h2 {font-size:clamp(47px,12vw,64px)}
+  .simple-motion .hero-stage,.simple-motion .services-stage {height:auto;position:relative}
+  .simple-motion .hero .hero-machine {margin:20px 0}
+}
+@media(max-height:500px){.motion-chapter .scene-stage{height:auto!important;min-height:0!important;position:relative!important}}
+@media print{.contact .contact-machine{display:none}}

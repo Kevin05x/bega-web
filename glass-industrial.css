@@ -1,0 +1,234 @@
+/* BEGA · Glass industrial
+   Visual layer only: rig, Canvas sizing, sticky chapter lengths and wall
+   choreography remain in their original implementation. No animated blur. */
+:root {
+  --paper:#f2f6f6;
+  --ink:#102f43;
+  --blue:#087dbb;
+  --muted:#4f6979;
+  --line:#bfd0d8;
+  --glass-edge:rgba(255,255,255,.64);
+  --glass-shadow:0 16px 45px rgba(8,40,61,.09),inset 0 1px 0 rgba(255,255,255,.8);
+}
+body {background:#eff4f6}
+.brand-mark img {mix-blend-mode:normal;object-fit:contain}
+.wall-active .project-photo[data-category="personal"] img {object-position:center 20%}
+.gallery-pagination {display:flex;justify-content:flex-end;align-items:center;gap:14px;margin:0 0 12px;font:10px Consolas,monospace;color:#d5e7f2}
+.gallery-pagination button {border:1px solid #abcfe65c;background:#aacfe616;color:#eff8fc;border-radius:50%;width:32px;height:32px;font-size:18px}
+.gallery-pagination button:disabled {opacity:.3}
+.gallery-pagination button:not(:disabled):hover {background:#ddeb4a;color:#12334a}
+.wall-active .gallery-tools {margin-bottom:8px}
+.wall-active .gallery-filters button {padding:8px 11px;font-size:9px}
+.contact-focus-trace {display:none;position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:4}
+.contact-focus-trace path {fill:none;stroke:#b8d842;stroke-width:1.6;stroke-linejoin:round}
+.contact-focus-trace circle {fill:#78ad19;stroke:#fff;stroke-width:1}
+.contact .guided-field {outline:2px solid #087dbb;outline-offset:2px;background:#fff;box-shadow:0 0 0 5px #1485ba15}
+.contact-guide-hint {display:none}
+@media(min-width:1100px) and (min-height:701px){
+  .contact .contact-layout {position:relative;grid-template-columns:34% 44%;justify-content:space-between;gap:0;min-height:690px}
+  .contact .contact-copy {position:static}
+  .contact .contact-copy h2 {font-size:clamp(48px,5.1vw,79px)}
+  .contact .contact-machine {position:absolute;left:34%;top:42%;width:21%;height:280px;margin:0;overflow:visible;pointer-events:none;z-index:3}
+  .contact-guide-hint {display:block;position:absolute;left:0;bottom:24px;max-width:30%;font:9px/1.8 Consolas,monospace;letter-spacing:1px;color:#c8dfed}
+}
+@media(max-width:1099px),(max-height:700px){.contact-focus-trace{display:none!important}}
+.site-header {
+  background:rgba(247,251,252,.92);
+  border-color:rgba(174,200,215,.65);
+  box-shadow:0 5px 25px #092c4510;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.site-header nav a {color:#163b52}
+.header-cta {border:1px solid #acc4d2;border-radius:30px;padding:10px 18px;background:#ffffff6e}
+.header-cta:hover {background:#e6f2f8}
+.button {border-radius:9px}
+.hero {background:#eff4f6}
+.hero-stage {border-radius:0 0 32px 32px}
+.hero-intro {color:#d7e8f1;letter-spacing:1.3px}
+.hero-description {color:#e0ebf2}
+.hero-machine .machine-backdrop {
+  border:1px solid rgba(224,243,255,.52);border-radius:28px;
+  background:linear-gradient(135deg,rgba(215,239,251,.34),rgba(151,198,222,.16) 48%,rgba(228,246,255,.25));
+  box-shadow:inset 0 1px 0 #ffffff91,inset 0 -1px 0 #bde8ff40,0 28px 55px #00162430;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  opacity:1;transform:scale(.96);
+}
+.hero-machine .machine-backdrop:before {
+  top:85%;left:6%;right:6%;background:linear-gradient(90deg,transparent,#cfebfc66,transparent);
+}
+.hero .machine-label {
+  background:rgba(12,43,64,.85);border:1px solid #afdcf53d;border-radius:12px;
+  padding:10px 14px;bottom:0;color:#e2f3fc;letter-spacing:.9px;
+}
+.hero .machine-label b {color:#c3dbe9}
+.hero .hero-actions .text-link {border:1px solid #c2e1f46e;border-radius:9px;padding:17px 20px;background:#aecbe414}
+.hero .hero-actions .text-link:hover {background:#aecbe42b}
+.hero .hero-actions .button {box-shadow:0 8px 24px #0b263640}
+.hero-bottom {border-color:#b7d6e84d}
+.hero .motion-toggle {color:#dceaf3}
+
+/* Open editorial band: no extra card around each piece of content. */
+.intro-band {
+  background:radial-gradient(ellipse at 78% 40%,#cce5f0 0%,transparent 50%),linear-gradient(135deg,#f7faf9,#e4eff4);
+  padding-top:48px;padding-bottom:48px;min-height:330px;gap:8%;
+  border-bottom:1px solid #d2e1e7;
+}
+.intro-band .intro-statement>p:first-child {color:#173c50;font-size:clamp(26px,2.5vw,39px);max-width:540px}
+.intro-band .intro-statement>p:first-child strong {color:#0875ac}
+.intro-band .intro-statement>p:last-child {color:#4c6575;max-width:410px}
+.field-stack img {border:5px solid #ffffffb5;box-shadow:0 16px 30px #0a344b24}
+.field-stack>span {color:#164a68}
+
+/* Quiet photographic context behind the service stage. Light glass protects
+   the text; the existing machine and trace retain their own separate areas. */
+.services {background:#dceaf1}
+.services-stage {
+  background-image:linear-gradient(90deg,rgba(219,237,246,.72),rgba(231,242,248,.94) 50%,rgba(236,245,248,.98)),url('assets/photos/estructura-metalica.jpeg');
+  background-position:left center;background-size:cover;
+}
+.services-copy {
+  background:linear-gradient(135deg,#fffffff2,#f6fbffc7);
+  border:1px solid #ffffffd9;border-radius:22px;
+  box-shadow:var(--glass-shadow);padding:24px;
+}
+.service-list {margin-top:14px}
+.service-list article {border-color:#c7dce7;padding:18px 0;gap:16px}
+.service-list article:last-child {border-bottom:0}
+.service-list article>a {background:#ffffffa6;border-color:#b2ccd9}
+.service-list p {color:#486475}
+.service-number {color:#3e657c}
+.services .orbit {border:1px solid #ffffff9c;background:linear-gradient(135deg,#e9f9ff75,#d9effd16);box-shadow:inset 0 1px 0 #fff9;border-radius:28px}
+.services-bottom,.service-machine figcaption strong {color:#385d73}
+.services .section-top>.micro {color:#45677a}
+
+.section-space:not(.wall-active) {padding-top:78px;padding-bottom:78px}
+.equipment {
+  background:radial-gradient(ellipse at 90% 65%,#c9e4f0 0%,transparent 54%),radial-gradient(ellipse at 5% 15%,#e1eedd,transparent 43%),#f1f6f6;
+}
+.equipment .section-heading {margin-bottom:36px}
+.equipment .section-top {padding-bottom:30px}
+.muted-heading {color:#597786}
+.equipment-item,.equipment-item+article {
+  background:linear-gradient(135deg,#ffffffcf,#f6fbff99);border:1px solid #ffffffed;
+  border-radius:22px;box-shadow:var(--glass-shadow);padding:24px;
+}
+.equipment-photo {height:165px;position:relative;overflow:hidden;border-radius:13px;margin-bottom:23px;background:#163c50}
+.equipment-photo img {width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.equipment-photo:after {content:'';position:absolute;inset:0;background:linear-gradient(0deg,#06283da6,transparent 75%);pointer-events:none}
+.equipment-photo figcaption {position:absolute;z-index:1;bottom:12px;left:14px;right:14px;display:flex;align-items:center;justify-content:space-between;font:9px Consolas,monospace;letter-spacing:1px;color:#fff}
+.equipment-photo figcaption span {font-size:23px}
+.equipment-item>p,.equipment-item details p {color:#466171}
+.equipment-tags span {background:#ffffff73;border-color:#c8dce6}
+.equipment .measurement {margin:24px 0}
+.equipment-footnote {margin-top:30px;color:#446173}
+
+/* Preserve all transforms and perspective settings from visuals.js.
+   Blur is deliberately not applied to the moving wall or its columns. */
+.projects {background:#071f30}
+.projects-stage {background:radial-gradient(ellipse at 90% 15%,#194f6433,transparent 55%)}
+.gallery-filters {background:#adcfe810;border:1px solid #afcfe329;border-radius:28px;padding:5px}
+.gallery-filters button {border-color:transparent;background:transparent;color:#e0edf5}
+.gallery-filters button:not([aria-pressed=true]):hover {background:#d8eaff20}
+.gallery-filters button[aria-pressed=true] {box-shadow:0 3px 14px #0002}
+.wall-active .project-photo:nth-child(n) {background:linear-gradient(125deg,#38607acf,#24495de6);border:1px solid #addcf455;border-radius:15px;box-shadow:0 16px 35px #0004,inset 0 1px 0 #e3f4ff5c}
+.wall-active .project-photo figcaption {background:linear-gradient(120deg,#8bbcd12e,#c2e6fd0d);color:#eff9ff}
+.project-photo figcaption small {color:#c3dce9}
+.gallery-mode {background:#c6e7fb0f;border-color:#c3defd60;color:#eef67c;box-shadow:inset 0 1px 0 #edfaff26}
+.wall-hint {color:#c0d6e4}
+.wall-bottom .text-link {color:#d3e6f0}
+.photo-expand {box-shadow:0 5px 15px #01223338}
+
+.about {background:linear-gradient(120deg,#f5f8f5,#e4eff5);position:relative;overflow:clip}
+.about-layout {gap:9%}
+.about .section-top {padding-bottom:35px}
+.about-intro {margin-top:26px;color:#22465b}
+.about-secondary {color:#4c6575}
+.principles {background:linear-gradient(140deg,#ffffffb8,#f5fbff85);border:1px solid #fff;border-radius:22px;box-shadow:var(--glass-shadow);padding:8px 26px}
+.principles article:first-child {border-top:0}
+.principles article {padding-top:23px;padding-bottom:23px}
+.principles article>span {top:26px}
+.principles p {color:#466374;margin-top:10px}
+.values-line {margin-top:48px;padding:23px 0;color:#36576a}
+
+.contact {
+  color:#f2f7fb;background-color:#102e44;
+  background-image:linear-gradient(90deg,#06263aec,#0a3049cd),url('assets/photos/nave-nocturna.jpeg');
+  background-size:cover;background-position:center 48%;
+}
+.contact .section-top {padding-bottom:35px}
+.contact .micro {color:#c3d9e5}
+.contact .eyebrow:before {background:#ddec4b}
+.contact h2>span:not(.contact-arrow),.contact-arrow {color:#80cffe}
+.contact-copy>p {color:#d1e4ef}
+.contact-form-wrap {
+  background:linear-gradient(135deg,rgba(247,252,255,.94),rgba(226,240,248,.9));
+  color:#12354b;border:1px solid #f2fcffb0;border-radius:24px;padding:28px;
+  box-shadow:0 25px 55px #001a2d44,inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.contact .form-intro,.contact .preview-note,#query-result>p {color:#436071}
+.contact input,.contact select,.contact textarea {color:#14384e;background:#ffffff63;border:1px solid #b4cbd8;border-radius:8px;padding:12px}
+.contact input::placeholder,.contact textarea::placeholder {color:#526e7e}
+.contact option {color:#14384e;background:#f5faff}
+.contact input:focus,.contact select:focus,.contact textarea:focus {background:#fff}
+.contact .form-row {gap:16px}
+.contact #query-text {background:#f6fbff}
+.site-footer {background:#071e2f}
+.footer-top {padding-bottom:30px}
+dialog {background:#f0f8fcf5;border:1px solid #fff9;border-radius:18px;box-shadow:0 30px 90px #0006}
+dialog::backdrop {background:#041624e8}
+
+@media(min-width:901px) and (max-height:800px) {
+  .services-copy {padding:17px 21px}
+  .service-list article {padding:12px 0}
+  .service-list h3 {font-size:20px}
+  .service-list p {font-size:11px}
+}
+@media(max-width:1100px) {
+  .header-cta {padding:9px 13px;gap:15px}
+  .services-copy {padding:18px}
+  .service-list article {gap:11px}
+  .contact-form-wrap {padding:23px}
+}
+@media(max-width:680px) {
+  .site-header {-webkit-backdrop-filter:none;backdrop-filter:none;background:#f7fbfc}
+  .header-cta {padding:8px 10px;font-size:9px;gap:7px}
+  .hero-stage {border-radius:0 0 23px 23px}
+  .hero .hero-actions .text-link {padding:15px 10px}
+  .hero-actions {gap:12px}
+  .hero-machine .machine-backdrop {border-radius:21px;-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(130deg,#badcee73,#86b8d13d)}
+  .intro-band {min-height:0;padding-top:38px;padding-bottom:38px;gap:28px}
+  .intro-band .intro-statement>p:first-child {font-size:27px}
+  .services-copy {padding:22px 18px;border-radius:18px}
+  .services-copy h2 {font-size:41px}
+  .service-list article {padding:18px 0;grid-template-columns:16px 1fr 30px;gap:10px}
+  .service-list article>a {width:30px;height:30px;font-size:21px}
+  .service-list h3 {font-size:20px}
+  .services-stage {background-position:25% center}
+  .section-space:not(.wall-active) {padding-top:52px;padding-bottom:52px}
+  .equipment-item,.equipment-item+article {padding:20px;border-radius:18px}
+  .equipment-photo {height:160px;margin-bottom:20px}
+  .equipment-photo figcaption {font-size:8px}
+  .gallery-filters {border-radius:16px;gap:3px;padding:5px}
+  .gallery-filters button {font-size:9px;padding:9px 10px}
+  .wall-grid .project-photo {background:linear-gradient(120deg,#375b71,#20465c);border:1px solid #aacfe440}
+  .principles {padding:4px 18px;border-radius:18px}
+  .principles article {padding-left:30px}
+  .values-line {margin-top:32px;font-size:3.1vw;gap:10px}
+  .contact-form-wrap {padding:22px 18px;border-radius:19px;-webkit-backdrop-filter:none;backdrop-filter:none;background:#edf5f9f5}
+  .contact h2 {font-size:60px}
+  .contact-layout {gap:28px}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+  .site-header {background:#f7fbfc}
+  .hero-machine .machine-backdrop {background:linear-gradient(135deg,#b6d7e59c,#8db5ca94)}
+  .contact-form-wrap {background:#edf5f9}
+}
+@media(prefers-reduced-motion:reduce) {
+  .site-header,.hero-machine .machine-backdrop,.contact-form-wrap {-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+@media print {
+  .services-stage,.hero-stage,.contact,.equipment,.about,.intro-band {background:#fff;color:#102f43}
+  .contact-form-wrap,.principles,.services-copy,.equipment-item {box-shadow:none;background:#fff;backdrop-filter:none}
+  .equipment-photo {display:none}
+}
