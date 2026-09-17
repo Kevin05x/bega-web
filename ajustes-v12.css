@@ -7,11 +7,18 @@
 
 /* --- Fondo de servicios más opaco: la grúa ilustrada debe notarse
    claramente por encima de la fotografía, no competir con ella.
-   Kevin pidió un poco más de neblina todavía sobre el lado izquierdo. --- */
-.services-stage {
-  background-image:
-    linear-gradient(100deg, rgba(9,36,52,.66) 0%, rgba(9,36,52,.3) 42%, rgba(236,245,248,.9) 78%),
-    url('assets/photos/estructura-metalica.jpeg');
+   Kevin pidió un poco más de neblina todavía sobre el lado izquierdo.
+   Solo en escritorio: en móvil, polish-v9.css ya define un degradado propio
+   (vertical, más oscuro arriba) pensado para esa maqueta apilada, y esta
+   regla —al cargar después, con la misma especificidad— lo estaba
+   reemplazando sin querer, dejando el título "A cada desafío" con muy
+   poco contraste en el celular (revisión 15). --- */
+@media (min-width: 681px) {
+  .services-stage {
+    background-image:
+      linear-gradient(100deg, rgba(9,36,52,.66) 0%, rgba(9,36,52,.3) 42%, rgba(236,245,248,.9) 78%),
+      url('assets/photos/estructura-metalica.jpeg');
+  }
 }
 
 /* Al oscurecer ese lado, el eyebrow "0X / ..." (texto oscuro, pensado

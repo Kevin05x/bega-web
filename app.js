@@ -1,9 +1,12 @@
 (() => {
   'use strict';
   document.body.classList.add('js');
-  const menu=document.querySelector('.menu-button'),nav=document.querySelector('#main-nav');
-  menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);menu.querySelector('span').textContent=open?'−':'+';});
+  const menu=document.querySelector('.menu-button'),nav=document.querySelector('#main-nav'),navBackdrop=document.querySelector('.nav-backdrop');
+  menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);navBackdrop?.classList.toggle('is-open',open);menu.querySelector('span').textContent=open?'−':'+';});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){menu.click();menu.focus();}});
+  // Revisión 15: menú lateral en móvil — tocar fuera del panel (la zona
+  // oscurecida) lo cierra, igual que un enlace o la tecla Escape.
+  navBackdrop?.addEventListener('click',()=>{if(menu.getAttribute('aria-expanded')==='true')menu.click();});
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
   document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',event=>{
     const target=document.querySelector(link.getAttribute('href'));if(!target)return;

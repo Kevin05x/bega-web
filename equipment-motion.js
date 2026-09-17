@@ -164,6 +164,31 @@
       canvas.addEventListener('pointerenter', () => { hovering = true; });
       canvas.addEventListener('pointermove', setTargetFromPointer);
       canvas.addEventListener('pointerleave', () => { hovering = false; target = { ...rest }; schedule(); });
+    } else {
+      // Revisión 15: Kevin pidió que, en el teléfono, el equipo responda al
+      // arrastrar el dedo igual que responde al mouse en escritorio. Solo se
+      // activa mientras el dedo está presionado sobre el lienzo (no al
+      // simplemente tocar o pasar por encima), y solo ahí se evita que ese
+      // gesto haga scroll de la página: fuera del lienzo, el scroll normal
+      // de la página sigue intacto.
+      let dragging = false;
+      const endDrag = () => {
+        if (!dragging) return;
+        dragging = false; hovering = false; target = { ...rest }; schedule();
+      };
+      canvas.addEventListener('pointerdown', event => {
+        if (event.pointerType !== 'touch') return;
+        dragging = true; hovering = true;
+        canvas.setPointerCapture?.(event.pointerId);
+        setTargetFromPointer(event);
+      });
+      canvas.addEventListener('pointermove', event => {
+        if (!dragging || event.pointerType !== 'touch') return;
+        event.preventDefault();
+        setTargetFromPointer(event);
+      }, { passive: false });
+      canvas.addEventListener('pointerup', endDrag);
+      canvas.addEventListener('pointercancel', endDrag);
     }
     new ResizeObserver(() => { if (ready) paint(current); }).observe(canvas);
     fineHoverQuery.addEventListener?.('change', () => { if (!fineHoverQuery.matches) { hovering = false; target = { ...rest }; schedule(); } });

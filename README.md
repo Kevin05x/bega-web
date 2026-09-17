@@ -5,7 +5,7 @@
 > nueva revisión del sitio, esta carpeta se reemplaza por la versión actualizada — no se
 > edita a mano.
 
-# BEGA — Glass industrial · revisión 14 (contacto real)
+# BEGA — Glass industrial · revisión 15 (legibilidad móvil)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -40,12 +40,13 @@ Vista móvil interactiva desde el ordenador: **http://127.0.0.1:4185/preview-mov
 - `clients-v10.css`: capa aditiva de la revisión 10 — únicamente reglas para `.clients` / `.client-logo` (nueva sección de clientes), ajustada en la revisión 12 para que cada logo llene su tarjeta según su propia proporción.
 - `ajustes-v12.css`: capa aditiva de la revisión 12 — fondo de servicios más oscuro y texto técnico (eyebrow/micro) más grande en escritorio.
 - `equipos-v13.css`: capa aditiva de la revisión 13 — muestra/oculta el lienzo animado de cada tarjeta de equipos sobre su fotografía.
-- `contacto-v14.css`: capa aditiva de la revisión 14 — estilo del correo/WhatsApp/redes en el pie de página, de los dos enlaces directos en la sección de contacto, y ajuste de los botones de envío del resumen de consulta. Se carga al final de todas.
+- `contacto-v14.css`: capa aditiva de la revisión 14 — estilo del correo/WhatsApp/redes en el pie de página, de los dos enlaces directos en la sección de contacto, y ajuste de los botones de envío del resumen de consulta.
+- `mobile-fixes-v15.css`: capa aditiva de la revisión 15 — legibilidad y usabilidad en móvil (ver esa sección). Se carga al final de todas.
 - `preview-movil.html`: marco interactivo de teléfono, solo para presentar la vista responsive.
 - `animation.js`: montaje por articulaciones, poses, entrada/salida y trazos de título (grúa azul del hero/servicios/contacto; no se tocó en esta revisión).
-- `equipment-motion.js`: revisión 13 — anima el elevador articulado y la plataforma de tijera dentro de sus tarjetas en `#equipos`, con los motores de pose que Kevin generó con ChatGPT/Astra portados literalmente. Independiente de `animation.js`.
+- `equipment-motion.js`: revisión 13 — anima el elevador articulado y la plataforma de tijera dentro de sus tarjetas en `#equipos`, con los motores de pose que Kevin generó con ChatGPT/Astra portados literalmente. Independiente de `animation.js`. Desde la revisión 15, responde también a arrastrar el dedo en pantallas táctiles (antes solo mouse/trackpad).
 - `visuals.js`: muro fotográfico reversible, respuesta al cursor, alternativa en cuadrícula y entradas de contenido por scroll.
-- `app.js`: menú, filtros, modal accesible, resumen local de consulta y recorrido suave entre capítulos (revisión 09); desde la revisión 14 arma también los enlaces de envío por WhatsApp y correo con ese mismo resumen.
+- `app.js`: menú, filtros, modal accesible, resumen local de consulta y recorrido suave entre capítulos (revisión 09); desde la revisión 14 arma también los enlaces de envío por WhatsApp y correo con ese mismo resumen. Desde la revisión 15, también cierra el menú móvil al tocar fuera del panel.
 - `contact-focus.js`: brazo con cinemática inversa de dos articulaciones y base fija, dirigido por foco o mouse en el formulario; no lee valores de los campos.
 - `polish.js`: inclinación suave de tarjetas al cursor y conteo de las cifras de altura al entrar en vista (revisión 09); no toca el rig ni las coreografías de scroll.
 - `preview.mjs`: servidor local, sin dependencias.
@@ -55,6 +56,7 @@ Vista móvil interactiva desde el ordenador: **http://127.0.0.1:4185/preview-mov
 - `assets/photos/`: selección inicial reutilizada en fondos y bloques; `archive/` contiene las 50 fotos documentales publicadas en la galería (46 del lote original más 4 enviadas por Kevin en la revisión 11), copiadas sin retocar salvo el cambio de formato a JPEG en las 4 nuevas.
 - `assets/photo-inventory.json`: catálogo completo de originales, categorías, SHA-256 y once exclusiones.
 - `assets/brand/`: símbolo, favicons e imagen de vista previa (Open Graph). Desde la revisión 14, `simbolo-bega-alpha.png` y los favicons se regeneraron a partir de "Logo BEGA.svg" (ver notas de la revisión 14 sobre ese archivo); `og-image.png` es nuevo.
+- `assets/brand/social/`: revisión 15 — logotipos reales de WhatsApp, Facebook, Instagram, TikTok y Gmail (SVG, tal como los descargó Kevin de zonalogo.com), usados en el pie de página, la sección de contacto y el menú móvil.
 - `assets/clients/`: 8 logotipos de empresas cliente (revisión 10), enviados por Kevin y recortados a su contenido real; ver notas de la revisión 10 sobre el ajuste de contraste en el de CAM.
 - `FUENTES_Y_DECISIONES.md`: mapa de referencias, fotografías y contenido.
 - `qa/`: herramientas de revisión, muestras de referencias, capturas y `verification.json`. Esta carpeta no se sirve desde la vista previa.
@@ -80,12 +82,32 @@ De la lista de "Próxima fase":
 - **`robots.txt`:** se agregó, bloqueando todo por ahora (`Disallow: /`), coherente con el `noindex, nofollow` que ya tenía `index.html` porque el sitio sigue sin publicarse. Deja comentada la versión que habilita la indexación, para activarla junto con el dominio final.
 - **Contacto comercial real (revisión 14):** Kevin envió el correo (`serviciosgeneralesbega@gmail.com`), el celular (`957 320 345`) y los enlaces a TikTok, Instagram y Facebook. Ver notas de la revisión 14 sobre dónde y cómo se usaron.
 
+**El sitio ya está publicado:** repositorio `Kevin05x/bega-web` en GitHub (público, requisito del plan gratuito de GitHub Pages) y en línea en `https://kevin05x.github.io/bega-web/`. La carpeta `app/` de este proyecto es la que se sube a ese repositorio — ver "Recorrido y despliegue" más abajo para el paso a paso de cómo actualizar el sitio publicado después de un cambio.
+
 Quedan pendientes de la lista, y todos necesitan una decisión o un dato de Kevin/BEGA que no se puede resolver desde el código:
 
-1. A qué dominio y proveedor de hosting se va a desplegar, y si ya existe una cuenta de GitHub para el repositorio.
-2. Confirmar si el sitio ya se puede indexar (quitar `noindex`/`robots.txt`) o si sigue siendo privado hasta el lanzamiento.
-3. Revisión en navegadores y dispositivos físicos reales (aquí solo se prueba en Chromium vía Playwright).
+1. Confirmar si el sitio ya se puede indexar (quitar `noindex`/`robots.txt`) o si sigue siendo privado hasta el lanzamiento oficial.
+2. Comprar y conectar el dominio propio (BEGA dijo que lo comprará aparte) — GitHub Pages admite un dominio propio además de `kevin05x.github.io`.
+3. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
 4. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+
+## Novedades de la revisión 15
+
+El sitio ya está publicado en GitHub Pages (ver "Preparación de producción" abajo). Kevin lo revisó desde su teléfono real y encontró 9 problemas concretos de legibilidad y uso en móvil. Todo lo siguiente vive en `mobile-fixes-v15.css` (capa aditiva, se carga al final) más cambios puntuales en `index.html`, `app.js`, `equipment-motion.js` y una corrección de una regla en `ajustes-v12.css`. No se tocó el diseño de escritorio salvo donde se indica.
+
+- **Títulos y textos técnicos de sección más grandes:** `eyebrow`, `micro` y la micro-copia bajo cada encabezado ("VERSATILIDAD PARA LLEGAR MÁS LEJOS.", etc.) subieron de tamaño en pantallas de 900 px o menos — algunos estaban en 6.5–9 px, ilegibles en un teléfono real aunque se vieran bien en la emulación de escritorio.
+- **Pie de página sin "PROTOTIPO" y con redes más visibles:** se quitó el texto "PROTOTIPO / 01" (el sitio ya no lo es). El correo, WhatsApp, Facebook, Instagram y TikTok ahora llevan una insignia de color con las iniciales de cada red (WA, @, FB, IG, TT) en vez de solo texto plano — reconocibles de un vistazo sin recrear el logotipo real de cada marca. La misma insignia se reutiliza en la sección de contacto y en el menú móvil.
+- **WhatsApp/correo de la sección de contacto, ya no se ven mal:** en pantallas angostas se apilan uno debajo del otro (antes competían por el mismo renglón y el correo largo se recortaba visualmente).
+- **"Seguridad · Eficiencia · Compromiso" ya no se desborda:** ese renglón (`.values-line`, en "La forma BEGA") no tenía forma de pasar a una segunda línea en pantallas angostas; ahora se envuelve y se centra.
+- **Galería sin contador ni "Serie X de Y":** se quitaron "50 FOTOGRAFÍAS" y "Serie 5 de 5 · 49–50 de 50"; quedan solo las flechas para recorrer las series, en escritorio y en móvil.
+- **"A cada desafío, una solución." ya se ve en móvil:** esto sí era un error real, no solo de gusto. `ajustes-v12.css` traía una regla de fondo para `.services-stage` sin restricción de ancho de pantalla que, por cargarse después, reemplazaba sin querer el fondo propio que `polish-v9.css` ya tenía pensado para móvil (más oscuro arriba, donde vive el título) — el resultado era un título en tinta oscura sobre un fondo también oscuro en esa zona, prácticamente invisible. Se restringió esa regla de `ajustes-v12.css` a escritorio (901 px o más) y, además, el título de esta sección ahora usa un color claro fijo en móvil, para no depender de en qué punto exacto del degradado de scroll esté el visitante.
+- **El equipo animado responde al arrastrar el dedo en el teléfono:** en escritorio, el articulado y la tijera ya seguían al mouse dentro de su tarjeta (revisión 13); en móvil no pasaba nada porque esa interacción se activaba solo con `hover:hover` (mouse/trackpad). Se agregó la misma interacción para pantallas táctiles, activada solo mientras el dedo está presionado sobre el lienzo — fuera de él, el scroll normal de la página no se ve afectado.
+- **Menú móvil rediseñado como panel lateral:** antes se desplegaba como una lista simple debajo del encabezado. Ahora es un panel que entra desde la derecha, con fondo propio y borde, cada enlace es un bloque independiente (fondo y borde propios) que entra escalonado uno tras otro al abrir el menú (no todos de golpe), y arriba de los enlaces aparecen el WhatsApp, el correo y las redes — tal como pidió Kevin, no en el hero sino al desplegar el menú. Tocar fuera del panel (la zona oscurecida) lo cierra, igual que antes lo cerraban un enlace o la tecla Escape.
+- **Textos pequeños del hero, más grandes:** la frase superior ("SEGURIDAD EN CADA PASO..."), la franja inferior y el botón de "Reducir movimiento" subieron de tamaño en móvil.
+- **Hallazgo aparte, sin pedirlo Kevin:** en "La forma BEGA", el título en realidad decía "La seguridad empieza antesde subir." — pegado, sin espacio ni salto de línea — porque el `<br>` entre "antes" y "de subir." resultaba ser, sin buscarlo, el único hijo-elemento de ese `<span>`, y una regla ya existente para ocultar el *último* salto de línea del título en móvil (`.about h2 br:last-child`) también lo alcanzaba a él. Se agregó un espacio de texto real antes de ese `<br>`, así que ahora se lee bien con o sin el salto de línea.
+- **Verificado:** Playwright en 390×844 — sin errores de consola, sin 404 tras recorrer los 4 filtros de la galería y todas sus páginas de paginación (con las 50 fotos reales, traídas de la computadora de Kevin para esta prueba), el menú abre y cierra por botón, por enlace y por toque fuera del panel sin quedar inalcanzable, el arrastre táctil simulado sobre el equipo articulado repinta el lienzo, y en 1440×900 (escritorio) el menú, el pie de página y la sección de contacto se comportan exactamente igual que antes de esta revisión.
+
+**Corrección sobre la marcha, pedida por Kevin antes de publicar:** las insignias de color con iniciales (WA, FB, IG, TT, @) se reemplazaron por los logotipos reales de cada red — Kevin descargó los cinco de zonalogo.com (WhatsApp, Facebook, Instagram, TikTok y Gmail para el correo) y los guardó en la carpeta del proyecto; quedaron en `assets/brand/social/` como SVG, con su propio color y forma, sin recortar ni recolorear. Es el uso habitual de estos íconos para enlazar a las cuentas propias del negocio, no una recreación con otro fin. Además, el panel del menú móvil tenía un fondo plano de un solo color que Kevin señaló como "vacío"; ahora usa de fondo la misma fotografía industrial nocturna que ya aparece en la sección de contacto (`assets/photos/nave-nocturna.jpeg`), oscurecida con un degradado para que los bloques del menú se sigan leyendo bien encima.
 
 ## Novedades de la revisión 14
 
@@ -252,4 +274,4 @@ Los scripts en `qa/` utilizan las herramientas disponibles en este equipo y cont
 2. ~~Confirmar contacto~~ Resuelto en la revisión 14 (correo, WhatsApp y redes). Quedan pendientes los modelos específicos y fichas técnicas de cada equipo, y una versión realmente vectorial del logo (ver revisión 14) para producción; ninguno de los dos impide revisar este prototipo.
 3. Ampliar y optimizar la galería con los originales aprobados; las fotografías actuales se conservan sin edición y cargan de forma diferida.
 4. ~~Si se incorpora el elevador anaranjado, preparar primero su rig y revisar la coherencia de las piezas.~~ Resuelto en la revisión 13, junto con la plataforma de tijera roja.
-5. ~~Conectar el canal comercial~~ Resuelto en la revisión 14. Queda: revisar SEO, privacidad y navegadores/dispositivos reales; después crear el repositorio GitHub, desplegar una prueba y conectar el dominio autorizado.
+5. ~~Conectar el canal comercial~~ Resuelto en la revisión 14. ~~Crear el repositorio de GitHub y desplegar una prueba~~ Resuelto: el sitio está en línea en `https://kevin05x.github.io/bega-web/`. ~~Revisar en un teléfono real~~ Resuelto en la revisión 15 (9 correcciones de legibilidad y uso en móvil). Queda: revisar SEO/privacidad, comprar y conectar el dominio propio, y revisar en más navegadores/dispositivos reales.
