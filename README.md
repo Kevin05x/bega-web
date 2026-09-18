@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 15 (legibilidad móvil)
+# BEGA — Glass industrial · revisión 16 (logo del encabezado y cliente Proycon)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -91,6 +91,16 @@ Quedan pendientes de la lista, y todos necesitan una decisión o un dato de Kevi
 2. Comprar y conectar el dominio propio (BEGA dijo que lo comprará aparte) — GitHub Pages admite un dominio propio además de `kevin05x.github.io`.
 3. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
 4. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+5. Incorporar la “frase motivacional” que el cliente mencionó por WhatsApp para cerrar el proyecto — pendiente de que Kevin recupere el texto exacto que le dio al cliente; en cuanto lo tenga se agrega en una revisión 16b.
+
+## Novedades de la revisión 16
+
+Kevin reenvió el feedback del cliente por WhatsApp (audios) antes de cerrar el proyecto y pagar el dominio: dos pedidos concretos.
+
+- **Logo del encabezado, más “imponente”:** el cliente pidió que el nombre “BEGA” de la barra de navegación se vea más grande y con más espesor (“el espesor, el tamaño”), como en la imagen de referencia que envió (el lock-up en 3D con “BEGA / SOLUCIONES GENERALES / TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN”). El texto ya usaba `font-weight:900` (el máximo que reconoce CSS) sobre Arial del sistema — sin descargar una fuente nueva, sintetizar más peso ahí no es posible, así que se sumó `-webkit-text-stroke` (un trazo fino sobre el propio relleno, funciona en Chrome/Edge/Safari; en Firefox no hace nada y el texto se ve igual que antes, sin romperse) y se subió el tamaño de 31 a 35px en escritorio (23 a 26px en móvil), aflojando levemente el `letter-spacing` para que las letras no se junten al ser más anchas. Sigue siendo el mismo HTML/CSS de siempre (`.brand-mark`), no una imagen ni una fuente nueva.
+- **Logo de Grupo Proycon corregido:** el cliente señaló que el logo de Proycon en la sección de clientes no era el correcto y envió el logo real (fondo azul en degradé con la forma de flecha/arco y “GRUPO PROYCON” en negro). Se recortó al contenido real y se le quitó el fondo blanco/viñeta (igual criterio que el resto de los 8 logos de clientes desde la revisión 10), reemplazando `assets/clients/grupo-proycon.png`. No cambió nada más de la sección.
+- **Pendiente de esta ronda:** el cliente también pidió sumar una “frase motivacional” que le había dado a Kevin en otra conversación; Kevin no ubicó el texto exacto todavía (“se me fue”). Queda para una revisión 16b en cuanto lo recupere — no se inventó ningún texto de reemplazo.
+
 
 ## Novedades de la revisión 15
 
