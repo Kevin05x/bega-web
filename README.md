@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 22 (logo en movil: sombra unica, sin trazo)
+# BEGA — Glass industrial · revisión 23 (SEO: palabras clave y Trujillo/La Libertad, indexación activada)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -87,10 +87,16 @@ De la lista de "Próxima fase":
 
 Quedan pendientes de la lista, y todos necesitan una decisión o un dato de Kevin/BEGA que no se puede resolver desde el código:
 
-1. Confirmar si el sitio ya se puede indexar (quitar `noindex`/`robots.txt`) o si sigue siendo privado hasta el lanzamiento oficial.
-2. Comprar y conectar el dominio propio (BEGA dijo que lo comprará aparte) — GitHub Pages admite un dominio propio además de `kevin05x.github.io`.
-3. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
-4. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+1. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
+2. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+
+## Novedades de la revisión 23
+
+El cliente pidió por WhatsApp (audio de Kevin) sumar palabras clave de búsqueda al texto del sitio: "manlift, elevador tijeral, elevador articulado, equipos de elevación, trabajos en altura, elevadores de personal", y que se mencione Trujillo / La Libertad como mercado principal, tomando como referencia cómo un competidor ("Gruas VP") aparece en Google con el texto "Grúas, elevadores y transporte pesado en Trujillo". Pidió explícitamente cambios de texto nada más, sin tocar diseño.
+
+- **Meta título y descripción:** el `<title>` pasó de "BEGA — Soluciones que nos llevan más alto" a "BEGA — Alquiler de Manlift y Equipos de Elevación en Trujillo, La Libertad", siguiendo el mismo patrón que el competidor citado. La `meta description` y las etiquetas `og:title`/`og:description` (la tarjeta que se ve al compartir el enlace) se reescribieron con el mismo set de palabras clave.
+- **Indexación activada:** hasta ahora `index.html` tenía `<meta name="robots" content="noindex, nofollow">` y `robots.txt` tenía `Disallow: /` — el sitio estaba deliberadamente oculto de buscadores desde el inicio del proyecto (ver "Preparación de producción" y el pendiente que tenía esta lista sobre indexación). Como el pedido del cliente es justamente aparecer en resultados de Google, se le preguntó a Kevin de forma explícita si correspondía activarla ya, y confirmó que sí: `robots.txt` ahora tiene `Allow: /` y el meta tag pasó a `index, follow`. Google puede tardar de días a semanas en rastrear e indexar el contenido nuevo, no es instantáneo.
+- **Texto con palabras clave y ubicación:** se sumaron menciones naturales de "manlift", "elevador articulado", "elevador tijeral" (como sinónimo de "plataforma de tijera", que ya existía), "equipos de elevación", "elevadores de personal" y "Trujillo y La Libertad" en varios párrafos ya existentes: la franja de introducción, la tarjeta de "Elevación y acceso", la sección de equipos, la sección "La forma BEGA", el pie de la sección de clientes y el pie de página. No se agregó ningún bloque ni sección nueva, ni se tocó CSS: solo se editó el texto dentro de etiquetas `<p>`/`<title>`/`<meta>` que ya existían, tal como pidió el cliente.
 
 ## Novedades de la revisión 16
 

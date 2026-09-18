@@ -1,10 +1,2 @@
-# BEGA — sitio en fase de prototipo (ver index.html: <meta name="robots" content="noindex, nofollow">).
-# Mientras no se confirme el dominio final y el contenido comercial (ver "Próxima fase" en README.md),
-# se bloquea la indexación por completo. Antes de publicar el sitio real, reemplazar por:
-#
-# User-agent: *
-# Allow: /
-# Sitemap: https://<dominio-final>/sitemap.xml
-
 User-agent: *
-Disallow: /
+Allow: /
