@@ -1,0 +1,9 @@
+/* Revision 16b -- frase inspiradora que el cliente ya habia enviado
+   ("UNA FRASE QUE NOS INSPIRA"). Se agrega en Nosotros, entre el texto
+   y la franja de valores. Capa aditiva, no toca ningun archivo anterior. */
+.inspiring-quote{margin:64px 0 0;padding:36px 44px;border-left:3px solid var(--blue);background:rgba(8,122,189,.06);border-radius:0 14px 14px 0}
+.inspiring-quote p{margin:0;font-size:24px;line-height:1.5;font-style:italic;color:var(--ink);max-width:820px}
+.inspiring-quote cite{display:block;margin-top:16px;font-size:12px;font-style:normal;letter-spacing:.6px;color:var(--muted);font-family:Consolas,monospace}
+
+@media(max-width:900px){.inspiring-quote{margin-top:45px;padding:28px 30px}.inspiring-quote p{font-size:19px}}
+@media(max-width:680px){.inspiring-quote{padding:22px 20px;border-radius:0 10px 10px 0}.inspiring-quote p{font-size:16px;line-height:1.55}.inspiring-quote cite{font-size:10.5px;margin-top:12px}}
