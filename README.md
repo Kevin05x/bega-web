@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 19 (relieve del logo mas robusto, sin '01 - ALCANZAR')
+# BEGA — Glass industrial · revisión 20 (menu movil cubre toda la pantalla)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -99,6 +99,13 @@ Kevin reenvió el feedback del cliente por WhatsApp (audios) antes de cerrar el 
 - **Logo del encabezado, más “imponente”:** el cliente pidió que el nombre “BEGA” de la barra de navegación se vea más grande y con más espesor (“el espesor, el tamaño”), como en la imagen de referencia que envió (el lock-up en 3D con “BEGA / SOLUCIONES GENERALES / TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN”). El texto ya usaba `font-weight:900` (el máximo que reconoce CSS) sobre Arial del sistema — sin descargar una fuente nueva, sintetizar más peso ahí no es posible, así que se sumó `-webkit-text-stroke` (un trazo fino sobre el propio relleno, funciona en Chrome/Edge/Safari; en Firefox no hace nada y el texto se ve igual que antes, sin romperse) y se subió el tamaño de 31 a 35px en escritorio (23 a 26px en móvil), aflojando levemente el `letter-spacing` para que las letras no se junten al ser más anchas. Sigue siendo el mismo HTML/CSS de siempre (`.brand-mark`), no una imagen ni una fuente nueva.
 - **Logo de Grupo Proycon corregido:** el cliente señaló que el logo de Proycon en la sección de clientes no era el correcto y envió el logo real (fondo azul en degradé con la forma de flecha/arco y “GRUPO PROYCON” en negro). Se recortó al contenido real y se le quitó el fondo blanco/viñeta (igual criterio que el resto de los 8 logos de clientes desde la revisión 10), reemplazando `assets/clients/grupo-proycon.png`. No cambió nada más de la sección.
 - **Pendiente de esta ronda:** el cliente también pidió sumar una “frase motivacional” que le había dado a Kevin en otra conversación; Kevin no ubicó el texto exacto todavía (“se me fue”). Queda para una revisión 16b en cuanto lo recupere — no se inventó ningún texto de reemplazo.
+
+## Novedades de la revisión 20
+
+Kevin señaló que, al abrir el menú móvil, la franja blanca del encabezado (donde está el logo) quedaba visible y sin oscurecer arriba del panel — se veía como si el menú no tapara bien. Esto ya pasaba desde que existe el panel lateral (revisión 15), pero se notaba poco porque el encabezado era bajo; al crecer a 114-140px para las tres líneas del logo (revisiones 17-19) quedó una franja mucho más grande y evidente sin cubrir.
+
+- **Causa:** tanto el panel lateral (`nav#main-nav`) como el fondo oscurecido detrás (`nav-backdrop`) empezaban en `top:var(--nav)`, es decir, justo debajo del encabezado — dejándolo siempre visible y sin oscurecer al abrir el menú.
+- **Solución:** ambos ahora empiezan en `top:0` y cubren toda la pantalla (`height:100svh` / `inset:0`), así que al abrir el menú se oscurece todo, logo incluido. El botón "Menú" sigue por encima de ambos (mismo `z-index` que ya tenía) para poder cerrarlo tocándolo de nuevo.
 
 ## Novedades de la revisión 19
 

@@ -185,9 +185,9 @@
     align-items: stretch;
     order: 0;
     position: fixed;
-    top: var(--nav); right: 0; bottom: 0;
+    top: 0; right: 0; bottom: 0;
     width: min(82vw, 340px);
-    height: calc(100svh - var(--nav));
+    height: 100svh;
     margin: 0; padding: 18px 18px 24px;
     background-color: #0c2a3c;
     background-image:
@@ -206,7 +206,7 @@
 
   .js .nav-backdrop {
     display: block;
-    position: fixed; inset: var(--nav) 0 0 0;
+    position: fixed; inset: 0;
     background: rgba(5, 18, 28, 0);
     pointer-events: none;
     transition: background .32s ease;
