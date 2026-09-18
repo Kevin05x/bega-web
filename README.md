@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 23 (SEO: palabras clave y Trujillo/La Libertad, indexación activada)
+# BEGA — Glass industrial · revisión 25 (sitemap.xml para Search Console)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -89,6 +89,14 @@ Quedan pendientes de la lista, y todos necesitan una decisión o un dato de Kevi
 
 1. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
 2. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+
+## Novedades de la revisión 25
+
+Kevin verificó la propiedad `bega.com.pe` en Google Search Console (revisión 24) y solicitó indexación manual de la portada. Search Console mostró que la página fue rastreada correctamente pero avisó "No se ha detectado ningún sitemap de referencia".
+
+- **Se agregó `sitemap.xml`** en la raíz de `app/`, con la única URL real del sitio (`https://bega.com.pe/` — es una sola página con anclas internas, no hay rutas adicionales que listar).
+- **`robots.txt`** ahora referencia ese sitemap (`Sitemap: https://bega.com.pe/sitemap.xml`) para que cualquier buscador lo encuentre solo, sin depender de que se suba a mano en cada consola de webmaster.
+- No es obligatorio para que el sitio se indexe (ya se puede indexar desde la revisión 23), pero ayuda a que Google confirme más rápido cuál es la URL canónica del sitio.
 
 ## Novedades de la revisión 23
 
