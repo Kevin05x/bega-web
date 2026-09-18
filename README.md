@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 25 (sitemap.xml para Search Console)
+# BEGA — Glass industrial · revisión 26 (favicon.ico + datos estructurados para Google)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -89,6 +89,14 @@ Quedan pendientes de la lista, y todos necesitan una decisión o un dato de Kevi
 
 1. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
 2. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+
+## Novedades de la revisión 26
+
+El sitio ya apareció en Google (revisión 25) con el título y la descripción correctos. Kevin pidió que también salga el logo, como le sale al competidor "Gruas VP" en sus resultados de búsqueda, además de los enlaces adicionales ("sitelinks") que ese competidor muestra debajo de su resultado principal (Quiénes somos, Contacto, etc.).
+
+- **`favicon.ico` en la raíz:** Google prefiere buscar el ícono de un sitio ahí además de las etiquetas `<link rel="icon">` que ya existían (PNG en varios tamaños). Se generó a partir de `favicon-512.png` con Pillow, en 16/32/48/64/128 px, y se agregó su `<link rel="icon" href="/favicon.ico">` en `index.html`. Esto ayuda a que el ícono aparezca de forma más confiable junto al resultado en buscadores, aunque Google puede tardar días o semanas en refrescar el favicon que tiene cacheado para un sitio nuevo — no es inmediato.
+- **Datos estructurados (JSON-LD, schema.org `Organization`)** agregados al `<head>` de `index.html`: nombre, URL, logo (`favicon-512.png`, cuadrado y con fondo transparente, tal como pide la documentación de Google para el "Logo" en resultados de búsqueda), descripción, zona de servicio (Trujillo / La Libertad) y enlaces a Facebook/Instagram/TikTok. Es la señal técnica correcta y documentada por Google para que su logo aparezca en los resultados — no garantiza que salga de inmediato, pero es lo que hay que tener para ser elegible.
+- **Sobre los "sitelinks" de Gruas VP (aclaración importante):** esos enlaces extra debajo del resultado principal (Quiénes somos, Contacto, Alquiler de plataformas...) los genera Google de forma totalmente automática, según la estructura y autoridad del sitio — no existe ninguna etiqueta, botón ni configuración que los fuerce a aparecer. Suelen salir en sitios con varias páginas reales bien enlazadas y con cierto tiempo/tráfico acumulado. El sitio de BEGA es una sola página con anclas internas (`#servicios`, `#equipos`, etc.), lo cual hace más difícil que Google los muestre pronto — no es algo que se pueda resolver con una edición de código, solo con tiempo y, eventualmente, si el sitio creciera a varias páginas reales.
 
 ## Novedades de la revisión 25
 
