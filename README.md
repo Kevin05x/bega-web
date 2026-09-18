@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 18 (logo del encabezado: correccion en movil, colores y tamaño)
+# BEGA — Glass industrial · revisión 19 (relieve del logo mas robusto, sin '01 - ALCANZAR')
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -99,6 +99,14 @@ Kevin reenvió el feedback del cliente por WhatsApp (audios) antes de cerrar el 
 - **Logo del encabezado, más “imponente”:** el cliente pidió que el nombre “BEGA” de la barra de navegación se vea más grande y con más espesor (“el espesor, el tamaño”), como en la imagen de referencia que envió (el lock-up en 3D con “BEGA / SOLUCIONES GENERALES / TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN”). El texto ya usaba `font-weight:900` (el máximo que reconoce CSS) sobre Arial del sistema — sin descargar una fuente nueva, sintetizar más peso ahí no es posible, así que se sumó `-webkit-text-stroke` (un trazo fino sobre el propio relleno, funciona en Chrome/Edge/Safari; en Firefox no hace nada y el texto se ve igual que antes, sin romperse) y se subió el tamaño de 31 a 35px en escritorio (23 a 26px en móvil), aflojando levemente el `letter-spacing` para que las letras no se junten al ser más anchas. Sigue siendo el mismo HTML/CSS de siempre (`.brand-mark`), no una imagen ni una fuente nueva.
 - **Logo de Grupo Proycon corregido:** el cliente señaló que el logo de Proycon en la sección de clientes no era el correcto y envió el logo real (fondo azul en degradé con la forma de flecha/arco y “GRUPO PROYCON” en negro). Se recortó al contenido real y se le quitó el fondo blanco/viñeta (igual criterio que el resto de los 8 logos de clientes desde la revisión 10), reemplazando `assets/clients/grupo-proycon.png`. No cambió nada más de la sección.
 - **Pendiente de esta ronda:** el cliente también pidió sumar una “frase motivacional” que le había dado a Kevin en otra conversación; Kevin no ubicó el texto exacto todavía (“se me fue”). Queda para una revisión 16b en cuanto lo recupere — no se inventó ningún texto de reemplazo.
+
+## Novedades de la revisión 19
+
+Kevin mandó capturas desde su celular: aparecían líneas oscuras cortando las letras de "BEGA" (visible en varios dispositivos, no solo el de él), y pidió quitar el texto "01 — ALCANZAR" que aparecía sobre la foto del hero en móvil.
+
+- **Líneas encima de las letras, causa real:** la revisión 18 ya había simplificado el relieve, pero todavía apilaba 4 capas de `text-shadow` con desplazamientos en fracciones de píxel (.6px, 1.2px, 1.8px, 2.4px) para simular el bisel. Ese apilado de sombras duras es justamente el que puede dejar líneas o costuras visibles entre una capa y la siguiente en algunos motores de render (no todos los navegadores anti-alían igual la unión de varias sombras superpuestas) — lo que Kevin vio no era un capricho del dispositivo, es un problema conocido de esa técnica.
+- **Solución:** se bajó de 4 capas a 2 en escritorio y en móvil: una sombra dura de un solo desplazamiento (le da el "escalón" del relieve) más una sombra difuminada (le da la sombra suave debajo). Con una sola capa dura ya no hay dos bordes rectos superpuestos que puedan dejar una costura — es la misma idea de antes pero con muchas menos piezas moviéndose, más robusta entre navegadores y dispositivos.
+- **"01 — ALCANZAR" eliminado:** se quitó ese `<span>` del `hero-kicker` en `index.html`. Ya existía una regla que lo ocultaba en pantallas angostas (`display:none` bajo los 900px), pero evidentemente no estaba surtiendo efecto en todos los casos; en vez de perseguir por qué, se sacó directamente el elemento del HTML — así no puede volver a aparecer en ningún ancho de pantalla ni navegador.
 
 ## Novedades de la revisión 18
 
