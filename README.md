@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 16b (frase inspiradora en Nosotros)
+# BEGA — Glass industrial · revisión 17 (logo del encabezado en 3D, tres líneas)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -99,6 +99,16 @@ Kevin reenvió el feedback del cliente por WhatsApp (audios) antes de cerrar el 
 - **Logo del encabezado, más “imponente”:** el cliente pidió que el nombre “BEGA” de la barra de navegación se vea más grande y con más espesor (“el espesor, el tamaño”), como en la imagen de referencia que envió (el lock-up en 3D con “BEGA / SOLUCIONES GENERALES / TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN”). El texto ya usaba `font-weight:900` (el máximo que reconoce CSS) sobre Arial del sistema — sin descargar una fuente nueva, sintetizar más peso ahí no es posible, así que se sumó `-webkit-text-stroke` (un trazo fino sobre el propio relleno, funciona en Chrome/Edge/Safari; en Firefox no hace nada y el texto se ve igual que antes, sin romperse) y se subió el tamaño de 31 a 35px en escritorio (23 a 26px en móvil), aflojando levemente el `letter-spacing` para que las letras no se junten al ser más anchas. Sigue siendo el mismo HTML/CSS de siempre (`.brand-mark`), no una imagen ni una fuente nueva.
 - **Logo de Grupo Proycon corregido:** el cliente señaló que el logo de Proycon en la sección de clientes no era el correcto y envió el logo real (fondo azul en degradé con la forma de flecha/arco y “GRUPO PROYCON” en negro). Se recortó al contenido real y se le quitó el fondo blanco/viñeta (igual criterio que el resto de los 8 logos de clientes desde la revisión 10), reemplazando `assets/clients/grupo-proycon.png`. No cambió nada más de la sección.
 - **Pendiente de esta ronda:** el cliente también pidió sumar una “frase motivacional” que le había dado a Kevin en otra conversación; Kevin no ubicó el texto exacto todavía (“se me fue”). Queda para una revisión 16b en cuanto lo recupere — no se inventó ningún texto de reemplazo.
+
+## Novedades de la revisión 17
+
+Kevin volvió a revisar el logo del encabezado y pidió ir más lejos: que sea notablemente más grande, con un acabado realmente 3D (como la imagen de referencia que reenvió, el lock-up en azul con relieve), y que aparezcan las tres líneas completas ("BEGA" / "SOLUCIONES GENERALES" / "TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN") — la revisión 16 solo había engrosado el trazo y agregado un poco de tamaño, sin la tercera línea ni relieve real.
+
+- **Tercera línea agregada:** `index.html` ahora tiene `<b class="brand-word">BEGA</b>` seguido de dos `<small>`, una para "SOLUCIONES GENERALES" y otra (`small.brand-sub`) para "TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN" — el mismo texto que ya vivía en el `eyebrow` del hero, ahora también en el encabezado.
+- **Relieve 3D con solo CSS:** en vez de agrandar el peso (ya estaba al máximo desde la revisión 16), "BEGA" ahora usa un degradado azul de arriba hacia abajo recortado al texto (`background-clip:text`) más varias capas de `text-shadow` escalonadas hacia abajo-derecha, que simulan el bisel/relieve de la imagen de referencia. Sigue siendo Arial del sistema — no se descargó ninguna fuente ni se generó una imagen; es el mismo truco de CSS que usan muchos logotipos "3D" hechos solo con texto.
+- **Tamaño real, no solo percibido:** el texto "BEGA" pasó de 35 a 46px en escritorio (26 a 30px en móvil) y el símbolo de 54×60 a 72×80px (36×42 a 48×54px en móvil) — ahora sí notoriamente más grande, no un ajuste menor.
+- **Encabezado más alto para que quepan las tres líneas:** `--nav` (la variable que define el alto del header y con la que ya se calculaban el offset del header pegajoso y el padding del hero) subió de 92 a 120px en escritorio y de 80 a 96px en móvil. Todo lo que dependía de esa variable se reacomodó solo, sin tocar esas otras reglas.
+- **Verificado antes de tocar el sitio real:** se armó una página de prueba aparte, cargando los mismos `style.css`/`design-v2.css`/`glass-industrial.css` de producción, y se renderizó con Chromium en 1440px y 390px de ancho para confirmar que las tres líneas entran bien, que no se corta ni se monta el texto sobre el símbolo, y que el relieve se ve limpio antes de aplicar el cambio al sitio.
 
 ## Novedades de la revisión 16b
 
