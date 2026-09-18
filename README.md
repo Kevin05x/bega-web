@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 17 (logo del encabezado en 3D, tres líneas)
+# BEGA — Glass industrial · revisión 18 (logo del encabezado: correccion en movil, colores y tamaño)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -99,6 +99,15 @@ Kevin reenvió el feedback del cliente por WhatsApp (audios) antes de cerrar el 
 - **Logo del encabezado, más “imponente”:** el cliente pidió que el nombre “BEGA” de la barra de navegación se vea más grande y con más espesor (“el espesor, el tamaño”), como en la imagen de referencia que envió (el lock-up en 3D con “BEGA / SOLUCIONES GENERALES / TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN”). El texto ya usaba `font-weight:900` (el máximo que reconoce CSS) sobre Arial del sistema — sin descargar una fuente nueva, sintetizar más peso ahí no es posible, así que se sumó `-webkit-text-stroke` (un trazo fino sobre el propio relleno, funciona en Chrome/Edge/Safari; en Firefox no hace nada y el texto se ve igual que antes, sin romperse) y se subió el tamaño de 31 a 35px en escritorio (23 a 26px en móvil), aflojando levemente el `letter-spacing` para que las letras no se junten al ser más anchas. Sigue siendo el mismo HTML/CSS de siempre (`.brand-mark`), no una imagen ni una fuente nueva.
 - **Logo de Grupo Proycon corregido:** el cliente señaló que el logo de Proycon en la sección de clientes no era el correcto y envió el logo real (fondo azul en degradé con la forma de flecha/arco y “GRUPO PROYCON” en negro). Se recortó al contenido real y se le quitó el fondo blanco/viñeta (igual criterio que el resto de los 8 logos de clientes desde la revisión 10), reemplazando `assets/clients/grupo-proycon.png`. No cambió nada más de la sección.
 - **Pendiente de esta ronda:** el cliente también pidió sumar una “frase motivacional” que le había dado a Kevin en otra conversación; Kevin no ubicó el texto exacto todavía (“se me fue”). Queda para una revisión 16b en cuanto lo recupere — no se inventó ningún texto de reemplazo.
+
+## Novedades de la revisión 18
+
+Kevin encontró un problema real en su celular (Android, Chrome): "BEGA" se veía deformado, como letras superpuestas y borrosas, ilegible. Además pidió que el logo sea todavía más grande, que "BEGA" se vea de un azul más claro (como la imagen de referencia), y que la segunda línea sea gris y la tercera negra.
+
+- **La causa del texto deformado en el celular:** la revisión 17 usaba un degradado recortado al texto (`background-clip:text`) más varias capas de `text-shadow`, con el mismo tamaño de sombra en escritorio y en móvil aunque el texto era más chico en móvil (30px) y con `letter-spacing` negativo. En la computadora (fuente Arial real) se veía bien, pero en Android Chrome sustituye Arial por una fuente distinta con letras más anchas en negrita — con el texto más chico, la sombra desproporcionadamente grande y el espaciado negativo, las sombras de una letra se montaban sobre la siguiente y todo se veía como una mancha azul.
+- **Solución:** se abandonó el degradado recortado (frágil entre navegadores) por un azul sólido más claro (`#2ba0e6`, el mismo tono de la imagen de referencia) con el efecto de relieve hecho solo con `text-shadow` escalonado — más simple y confiable. En móvil, ese `text-shadow` ahora tiene su propio juego de valores, mucho más chico (una fracción del de escritorio, no el mismo tamaño), y el `letter-spacing` en móvil pasa de -1.1px a 0 para darle aire a las letras. Se probó de nuevo antes de subirlo, esta vez prestando atención a que la sombra fuera proporcional al tamaño de letra en cada ancho de pantalla.
+- **Tamaño, otra vez más grande:** "BEGA" pasó de 46 a 60px en escritorio (30 a 36px en móvil), el símbolo de 72×80 a 92×102px (62×69px en móvil), y el encabezado (`--nav`) de 120 a 140px en escritorio (96 a 114px en móvil) para que siga entrando completo.
+- **Colores de las tres líneas:** "BEGA" en azul claro (`#2ba0e6`), "SOLUCIONES GENERALES" en gris (`#6c7680`), "TRABAJOS EN ALTURA Y EQUIPOS DE ELEVACIÓN" en negro (`#161616`) — antes las dos líneas de abajo usaban el mismo azul oscuro del resto del sitio.
 
 ## Novedades de la revisión 17
 
