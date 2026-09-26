@@ -6,7 +6,7 @@
 > edita a mano.
 
 
-# BEGA — Glass industrial · revisión 26 (favicon.ico + datos estructurados para Google)
+# BEGA — Glass industrial · revisión 27 (dos campos nuevos en el formulario de contacto)
 
 Landing local en español. Diseño y animación en HTML, CSS y JavaScript nativo, con recursos incluidos. No requiere npm, compilación, CDN ni conexión a Internet. Los prototipos previos permanecen en sus carpetas originales.
 
@@ -89,6 +89,14 @@ Quedan pendientes de la lista, y todos necesitan una decisión o un dato de Kevi
 
 1. Revisión en navegadores y dispositivos físicos reales — ya se probó en el teléfono real de Kevin (de ahí la revisión 15); falta Safari/iOS y otros modelos.
 2. Si más adelante Kevin consigue una versión vectorial real del logo (ver revisión 14: los dos archivos SVG que mandó no lo son), reemplazar el símbolo y los favicons de nuevo con esa fuente.
+
+## Novedades de la revisión 27
+
+El cliente (a través del primo de Kevin, Brayam) pidió sumar dos campos al formulario de contacto: por cuánto tiempo se necesita el equipo y la fecha prevista del trabajo — datos que hasta ahora solo se pedían en el campo libre de "Cuéntanos un poco más".
+
+- **Dos campos nuevos:** "¿Por cuánto tiempo?" (con el ejemplo pedido, "Ej. 15 días, 2 meses") y "Fecha prevista del trabajo" ("Ej. lunes, 01 de enero del 2026"), en una segunda fila junto a "Altura aproximada"/"Zona del proyecto", antes de "Equipo de interés" — mismo patrón visual de dos columnas que ya usaba el formulario, así que no hizo falta CSS nuevo. Son opcionales (igual que "Altura aproximada"), porque en una primera consulta el cliente puede no tener todavía esa fecha definida.
+- **Se agregan al resumen de la consulta:** el texto que se genera para enviar por WhatsApp o correo ahora incluye "Duración estimada" y "Fecha prevista" junto a los demás datos (servicio, equipo, altura, zona), con "Por definir" si se dejan en blanco — mismo criterio que ya usaba "Altura aproximada".
+- **Verificado:** en escritorio y en móvil (384px) los campos se ven bien alineados con el resto del formulario; se llenó el formulario de prueba y se confirmó que el texto armado para WhatsApp/correo incluye ambos datos nuevos, sin errores de consola.
 
 ## Novedades de la revisión 26
 

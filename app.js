@@ -62,7 +62,7 @@
   form.addEventListener('submit',event=>{
     event.preventDefault();if(!form.reportValidity())return;
     const values=new FormData(form);
-    text.value=`Hola, BEGA. Quisiera consultar sobre un proyecto.\n\nServicio: ${values.get('servicio')}\nEquipo: ${values.get('equipo')}\nAltura aproximada: ${values.get('altura')||'Por definir'}\nZona: ${values.get('zona')}\n\nDetalles:\n${values.get('detalle')}`;
+    text.value=`Hola, BEGA. Quisiera consultar sobre un proyecto.\n\nServicio: ${values.get('servicio')}\nEquipo: ${values.get('equipo')}\nAltura aproximada: ${values.get('altura')||'Por definir'}\nZona: ${values.get('zona')}\nDuración estimada: ${values.get('duracion')||'Por definir'}\nFecha prevista: ${values.get('fecha')||'Por definir'}\n\nDetalles:\n${values.get('detalle')}`;
     if(sendWhatsapp)sendWhatsapp.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text.value)}`;
     if(sendEmail)sendEmail.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Consulta desde el sitio web — BEGA')}&body=${encodeURIComponent(text.value)}`;
     form.hidden=true;result.hidden=false;text.focus();
